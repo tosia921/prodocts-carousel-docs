@@ -15,7 +15,7 @@ This is a documentation to a solution of the Front end Developer assignment.
 
 ## Shopify preview store
 
-**Website URL:** https://idhl-dev-test.myshopify.com/
+**Website URL:** https://idhl-dev-test.myshopify.com/ <br>
 **Password:** idhl321
 
 ## Products Carousel functionality
