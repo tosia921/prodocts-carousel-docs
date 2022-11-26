@@ -2,21 +2,23 @@
 
 This is a documentation to a solution of the Front end Developer assignment.
 
-## Table of contents
+# Table of contents
 
 - [IDHL/Fostr - Front End Developer Task](#idhlfostr---front-end-developer-task)
-  - [Table of contents](#table-of-contents)
-  - [Overview](#overview)
-    - [Products Carousel functionality](#products-carousel-functionality)
-    - [Shopify previe store](#shopify-previe-store)
-    - [Screenshots](#screenshots)
+- [Table of contents](#table-of-contents)
+  - [Shopify preview store](#shopify-preview-store)
+  - [Products Carousel functionality](#products-carousel-functionality)
+  - [Screenshots](#screenshots)
   - [File Structure](#file-structure)
-    - [Continued development](#continued-development)
+  - [Continued development](#continued-development)
   - [Author](#author)
 
-## Overview
+## Shopify preview store
 
-### Products Carousel functionality
+**Website URL:** https://idhl-dev-test.myshopify.com/password
+**Password:** idhl321
+
+## Products Carousel functionality
 
 -   Products Carousel is setup as a theme section
 -   Editable Section Header(if the field is empty it will not display)
@@ -26,13 +28,9 @@ This is a documentation to a solution of the Front end Developer assignment.
 -   Products with 'new' tag will be marked as per design in the carousel.
 -   Enable buttons checkbox
 -   Add to cart button copy field
+-   If Product is not in stock displays sold out and it can't be added to the cart
 
-### Shopify previe store
-
-Website URL: https://idhl-dev-test.myshopify.com/password
-Password: idhl321
-
-### Screenshots
+## Screenshots
 
 **Products Carousel test 1**
 ![](./image1.png)
@@ -70,26 +68,26 @@ root
 │
 ```
 
-**theme.liquid**
+**theme.liquid**<br>
 Added custom google fonts and swiper script/css
 
-**Products-carousel.liquid**
-This is a main section file, it pulls in neccesary css/js files and defines schema for the editable fields.
+**Products-carousel.liquid**<br>
+This is a main section file, it pulls in neccessary css/js files and defines schema for the editable fields.
 
-**Products-carousel-card.liquid**
+**Products-carousel-card.liquid**<br>
 This is a snippet liquid file for the products carousel card.
 
-**products-carousel.css**,
-**products-carousel-card.css**,
-**products-carousel.js**
+**products-carousel.css**,<br>
+**products-carousel-card.css**,<br>
+**products-carousel.js**<br>
 Those are all the assets files with custom css and javascript code.
 
-**en.default.schema.json**
-This is where all the products carousel shopify admnin labels are defined, atm there are translations just for the english language.
+**en.default.schema.json**<br>
+This is where all the products carousel shopify admin labels are defined, at the moment there are translations just for the english language.
 
-### Continued development
+## Continued development
 
-There are things that could be added to this carousel on top of existing functionality like:
+There are things that could be added to this carousel on top of existing functionality like, there is few thing of the top of my head but there could definitly be more:
 
 -   section padding options
 -   optional section description under heading
@@ -97,6 +95,7 @@ There are things that could be added to this carousel on top of existing functio
 -   filtering to display "new" products at the beggining of the carousel
 -   image ration settigns
 -   disabling carousel on desktop if there are 4 or less products
+-   expand add to bag functionality if product has variants/options
 
 ## Author
 
