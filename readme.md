@@ -96,6 +96,7 @@ There are things that could be added to this carousel on top of existing functio
 -   image ration settigns
 -   disabling carousel on desktop if there are 4 or less products
 -   expand add to bag functionality if product has variants/options
+-   and more...
 
 Also things like minifying js,css having all the css colors in global variables etc. but for the ease of reviewing it i'm leaving it in a readable format.
 
