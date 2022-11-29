@@ -1,0 +1,85 @@
+{% comment %}
+  Renders a product card
+
+  Accepts:
+  - card_product: {Object} Product Liquid object
+  - button_copy: {String} Product add to cart button copy
+  - show_button: {Boolean} Show the add to cart product button
+  - section_id: {string} ID of the card section
+
+  Usage:
+  {% render 'products-carousel-card' %}
+{% endcomment %}
+
+{{ 'products-carousel.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- if card_product and card_product != empty -%}
+  <li id="Slide-{{ section.id }}-{{ forloop.index }}" class="swiper-slide">
+    <a href="{{ card_product.url }}" class="product-image">
+      {%- if card_product.tags contains "new" -%}
+        <span class="product-tag">NEW</span>
+      {%- endif -%}
+      <img src="{{  card_product.featured_media | image_url }}">
+    </a>
+    <a href="{{ card_product.url }}" class="product-title">{{ card_product.title }}</a>
+    <p class="product-description">{{ card_product.description | strip_html | truncate: 88 }}</p>
+    <div class="product-price">
+      <span>{{ card_product.price | money }}</span>
+      {%- if card_product.compare_at_price  -%}
+       <span class="product-price product-price--compared">{{ card_product.compare_at_price | money }}</span>
+      {%- endif -%}
+    </div>
+    {%- if show_button == true -%}
+      {%- assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id -%}
+      <div class="product-button-wrapper">
+        <product-form>
+          {%- form 'product', card_product, id: product_form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+            <input
+              type="hidden"
+              name="id"
+              value="{{ card_product.selected_or_first_available_variant.id }}"
+              disabled
+            >
+            <button
+              id="{{ product_form_id }}-submit"
+              type="submit"
+              name="add"
+              class="product-button"
+              aria-haspopup="dialog"
+              aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
+              aria-live="polite"
+              data-sold-out-message="true"
+              {% if card_product.selected_or_first_available_variant.available == false %}
+                disabled
+              {% endif %}
+            >
+              <span>
+                {%- if card_product.selected_or_first_available_variant.available -%}
+                  {{ button_copy }}
+                {%- else -%}
+                  {{ 'Sold Out' }}
+                {%- endif -%}
+              </span>
+              <span class="sold-out-message hidden">
+                {{ 'Sold Out' }}
+              </span>
+              <div class="loading-overlay__spinner loading-state hidden">
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  role="presentation"
+                  class="spinner"
+                  viewBox="0 0 66 66"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                </svg>
+              </div>
+            </button>
+          {%- endform -%}
+        </product-form>
+      </div>
+    {%- endif -%}
+  </li>
+{%- endif -%}

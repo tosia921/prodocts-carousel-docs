@@ -1,0 +1,64 @@
+{{ 'products-carousel.css' | asset_url | stylesheet_tag }}
+{{ 'products-carousel-card.css' | asset_url | stylesheet_tag }}
+
+<section class="products-carousel">
+    <!-- Section Header -->
+    {%- if section.settings.title != blank -%}
+      <h2 class="products-carousel--title">{{ section.settings.title | escape }}</h2>
+    {%- endif -%}
+    <!-- Swiper Carousel -->
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <!-- Products Carousel Cards -->
+        {%- for product in section.settings.collection.products -%}
+          {% render 'products-carousel-card',
+              card_product: product,
+              button_copy: section.settings.button_copy,
+              show_button: section.settings.show_buttons,
+              section_id: section.id
+            %}
+        {%- endfor -%}
+      </div>
+      <!-- Swiper Navigation Buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.product-carousel.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Products Carousel",
+      "label": "t:sections.product-carousel.settings.title.label"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.product-carousel.settings.collection.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_buttons",
+      "label": "t:sections.product-carousel.settings.show_buttons.label",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "button_copy",
+      "default": "Add to Bag",
+      "label": "t:sections.product-carousel.settings.button_copy.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.product-carousel.presets.name"
+    }
+  ]
+}
+{% endschema %}
